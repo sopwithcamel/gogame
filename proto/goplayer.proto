@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package gogame;
+
+import "goboard.proto";
+
+service GoPlayerService {
+    // Get next move.
+    rpc GetMove(GetMoveRequest) returns (GetMoveResponse) {}
+}
+
+message GetMoveRequest {
+    // The current board position.
+    optional Board current_board = 1;
+
+    // Time remaining for the player.
+    optional double time_remaining = 2;
+}
+
+message GetMoveResponse {
+    optional MoveType type = 1;
+    
+    // If the move consists of playing a stone, this
+    optional Position new_stone_location = 2;
+}

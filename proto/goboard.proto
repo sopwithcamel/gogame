@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package gogame;
+
+enum PlayerColor {
+    BLACK = 0;
+    WHITE = 1;
+}
+
+enum MoveType {
+    PASS = 0;
+    PLAY_STONE = 1;
+}
+
+message Position {
+    int32 row = 1;
+    int32 col = 2;
+}
+
+message Board {
+    enum PositionState {
+        EMPTY = 0;
+        BLACK = 1;
+        WHITE = 2;
+    }
+
+    // Semantically required.
+    int32 board_size = 1;
+
+    // The states are stored in row-major order, i.e. the i-th position is:
+    // row * board_size + col.
+    repeated PositionState positions = 2;
+}

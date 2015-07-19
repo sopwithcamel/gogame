@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package gogame;
+
+import "goboard.proto";
+
+service GoService {
+    // Join the game.
+    rpc StartGame (StartGameRequest) returns (StartGameResponse) {}
+
+    // Leave the game.
+    rpc EndGame(EndGameRequest) returns (EndGameResponse) {}
+
+    
+}
+
+message StartGameRequest {
+    // Color desired by player.
+    PlayerColor desired_color = 1;
+}
+
+message StartGameResponse {
+    // Semantically required.
+    int64 game_id = 1;
+
+    // Color assigned to player.
+    PlayerColor assigned_color = 2;
+}
+
+message EndGameRequest {
+    // Semantically required.
+    int64 game_id = 1;
+}
+
+message EndGameResponse {
+}
